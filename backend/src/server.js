@@ -2,6 +2,8 @@ import express from 'express';
 import path from 'path';
 import dotenv from 'dotenv';
 import { ENV } from './lib/env.js';
+import { connectDB } from './lib/db.js';
+import { start } from 'repl';
 
 
 dotenv.config();
@@ -9,6 +11,10 @@ dotenv.config();
 const app = express();
 console.log(ENV.PORT)
 const __dirname = path.resolve();
+
+app.get('/health', (req, res) => {
+  res.send('Hello World!');
+});
 
 if (ENV.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../frontend/dist")));
@@ -18,10 +24,17 @@ if (ENV.NODE_ENV === "production") {
   });
 }
 
-app.get('/health', (req, res) => {
-  res.send('Hello World!');
-});
 
-app.listen(ENV.PORT, () => {
-  console.log('Server is running on port 3000');
-});
+
+const startServer = async () => {
+  try{
+    await connectDB();
+    app.listen(ENV.PORT, () => {
+      console.log(`Server is running on port ${ENV.PORT}`);
+    });
+  }catch(err){
+    console.log("Failed to start server", err);
+  }
+};
+
+startServer();
