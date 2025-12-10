@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema({
     }
 },{timestamps: true}
 );
-
+// changes done deploy
 const User = mongoose.model('User', userSchema);
 
 export default User;
