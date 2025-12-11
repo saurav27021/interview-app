@@ -17,5 +17,17 @@
     "url": "https://github.com/saurav27021/Interview-app-part1/issues"
   },
   "homepage": "https://github.com/saurav27021/Interview-app-part1#readme",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "@monaco-editor/react": "^4.7.0",
+    "@stream-io/video-react-sdk": "^1.24.0",
+    "canvas-confetti": "^1.9.3",
+    "date-fns": "^4.1.0",
+    "lucide-react": "^0.548.0",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
+    "react-resizable-panels": "^3.0.6",
+    "stream-chat": "^9.23.0",
+    "stream-chat-react": "^13.9.0"
+  }
 }
