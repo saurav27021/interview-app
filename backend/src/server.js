@@ -15,10 +15,9 @@ const app = express();
 
 const __dirname = path.resolve();
 
-// middleware
 app.use(express.json());
-// credentials:true meaning?? => server allows a browser to include cookies on request
-app.use(cors({ origin: ENV.CLIENT_URL, credentials: true }));
+const allowedOrigin = ENV.CLIENT_URL?.replace(/[\r\n\s]/g, "").replace(/\/$/, "");
+app.use(cors({ origin: allowedOrigin || "*", credentials: true }));
 app.use(clerkMiddleware()); // this adds auth field to request object: req.auth()
 
 app.use("/api/inngest", serve({ client: inngest, functions }));
